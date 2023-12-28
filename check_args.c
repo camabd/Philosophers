@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 15:24:55 by cabdli            #+#    #+#             */
-/*   Updated: 2023/12/28 16:17:36 by cabdli           ###   ########.fr       */
+/*   Updated: 2023/12/28 16:25:59 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	only_numbers(char **str)
 	return (1);
 }
 
-static int	at_least_1_philo(char **str)
+static int	at_least_1_philo(char **str, t_philo *data)
 {
 	int	philo;
 
@@ -41,16 +41,17 @@ static int	at_least_1_philo(char **str)
 	if (philo == 0)
 		return (printf("Error, there should be at leat 1 philo !"), 0);
 	else
-		//enregister le nb de philos dans la structure
+		data->nb_philos = philo;
 	return (1);
 }
 
-int	check_args(char **str)
+int	check_args(char **str, t_philo *data)
 {
 	if (!only_numbers(str))
 		return (0);
-	if (!at_least_1_philo(str))
+	if (!at_least_1_philo(str, data))
 		return (0);
+	if (!in_limits(str, ))
 	return (1);
 }
 

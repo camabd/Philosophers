@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:48:54 by cabdli            #+#    #+#             */
-/*   Updated: 2023/12/28 16:14:50 by cabdli           ###   ########.fr       */
+/*   Updated: 2023/12/28 16:20:48 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,10 @@
 typedef struct s_philo
 {
 	int	nb_philos;
-	
 }t_philo;
 
 /* Check_args.c */
-int			check_args(char **str);
+int			check_args(char **str, t_philo *data);
 
 /* Utils.c */
 long int	ft_atoi(const char *str);
