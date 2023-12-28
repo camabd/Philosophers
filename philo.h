@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:48:54 by cabdli            #+#    #+#             */
-/*   Updated: 2023/12/26 14:42:24 by cabdli           ###   ########.fr       */
+/*   Updated: 2023/12/28 16:14:50 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,18 @@
 # include <string.h>
 # include <sys/time.h>
 # include <pthread.h>
+# include <limits.h>
 
+typedef struct s_philo
+{
+	int	nb_philos;
+	
+}t_philo;
+
+/* Check_args.c */
+int			check_args(char **str);
+
+/* Utils.c */
+long int	ft_atoi(const char *str);
 
 #endif
