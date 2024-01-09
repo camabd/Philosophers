@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   collect_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 14:47:34 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/09 21:19:36 by cabdli           ###   ########.fr       */
+/*   Created: 2024/01/09 20:57:33 by cabdli            #+#    #+#             */
+/*   Updated: 2024/01/09 21:18:45 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include <philo.h>
 
-int	main(int ac, char **av)
+//multiplier t_die/eat/sleep * 1000 ? Pk ?
+void	collect_data(char **str, t_data *data)
 {
-	char			**str;
-	t_data			data;
-	t_philo			philo;
-	pthread_mutex_t	*forks;
-
-	str = NULL;
-	fortks = NULL;
-	if (ac != 5 && ac != 6)
-		return (printf("Error, wrong number of arguments !\n"), 0);
-	str = &av[1];
-	if (!check_args(str, &data))
-		return (0);
-	collect_data(str, &data);
-	
-	//init threads and mutexes
-	//printf("success !");
-	return (1);
+	data->t_die = ft_atoi(str[2]);
+	data->t_eat = ft_atoi(str[3]);
+	data->t_sleep = ft_atoi(str[4]);
+	if (str[5])
+		data->nb_meals = ft_atoi(str[5]);
 }
