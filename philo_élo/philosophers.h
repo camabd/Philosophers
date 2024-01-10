@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 10:58:02 by elrichar          #+#    #+#             */
-/*   Updated: 2024/01/10 12:41:54 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/10 13:22:50 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ typedef struct s_philo
 	pthread_t		thread_id;
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*r_fork;
-	pthread_mutex_t	*check_dead;
-	pthread_mutex_t	*write;
 	int				pos;
 	t_bool			*status;
 	long long		last_meal;

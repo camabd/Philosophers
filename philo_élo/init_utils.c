@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elrichar <elrichar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 11:30:46 by elrichar          #+#    #+#             */
-/*   Updated: 2023/10/05 12:40:08 by elrichar         ###   ########.fr       */
+/*   Updated: 2024/01/10 14:26:49 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,24 @@ void	set_common_vars(char **av, int i, t_philo **philos)
 
 void	set_forks(int i, int nb, t_philo **philos, pthread_mutex_t **forks)
 {
+	if (nb == 1)
+	{
+		(*philos)[i].l_fork = (*forks);
+		(*philos)[i].r_fork = NULL;
+	}
+	else if (i = 0)
+	{
+		(*philos)[i].l_fork = (*forks);
+		(*philos)[i].r_fork = (*forks) + (nb - 1);
+	}
+	else
+	{
+		(*philos)[i].l_fork = (*forks) + i;
+		(*philos)[i].r_fork = (*forks) + (i - 1);
+	}
+}
+/* void	set_forks(int i, int nb, t_philo **philos, pthread_mutex_t **forks)
+{
 	if (i == 0 && nb == 1)
 	{
 		(*philos)[i].l_fork = (*forks);
@@ -42,6 +60,7 @@ void	set_forks(int i, int nb, t_philo **philos, pthread_mutex_t **forks)
 		(*philos)[i].r_fork = (*forks) + (i - 1);
 	}
 }
+*/
 
 void	set_sync(int nb, int i, t_philo **philos)
 {

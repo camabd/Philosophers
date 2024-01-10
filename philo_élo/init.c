@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 21:16:57 by elrichar          #+#    #+#             */
-/*   Updated: 2024/01/10 12:21:30 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/10 14:05:09 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	init_data_philos(char **av, int ac, t_philo **philos)
 	}
 	return (1);
 }
-
+/*
 int	init_mutex_philos(int nb, t_philo **philos, pthread_mutex_t **forks)
 {
 	int						i;
@@ -64,7 +64,49 @@ int	init_mutex_philos(int nb, t_philo **philos, pthread_mutex_t **forks)
 	}
 	return (1);
 }
+*/
 
+int	init_mutex_philos(int nb, t_philo **philos, pthread_mutex_t **forks)
+{
+	int	i;
+
+	i = 0;
+	while (i < nb)
+	{
+		set_forks(i, nb, philos, forks);
+		i++;
+	}
+	return (1);
+}
+
+
+int	init_philos(char **str, int ac, t_philo **philos, pthread_mutex_t **forks, t_data *data)
+{
+	int	i;
+
+	i = 0;
+	*philos = malloc(sizeof(t_philo) * data->nb_philos);
+	if (!*philos)
+		return (0);
+	if (!init_mutex_philos(data->nb_philos, philos, forks))
+		return (0);
+	if (!init_data_philos(str, ac, philos))
+	{
+		free_mutex(str, forks);
+		while (i < data->nb_philos)
+		{
+			if (pthread_mutex_destroy((*philos)[i].check_dead))
+				return (write(2, "Error : mutex_destroy issue\n", 28), 0);
+			if (pthread_mutex_destroy((*philos)[i].write))
+				return (write(2, "Error : mutex_destroy issue\n", 28), 0);
+			i++;
+		}
+		return (0);
+	}
+	return (1);
+}
+
+/*
 int	init_philos(char **av, int ac, t_philo **philos, pthread_mutex_t **forks)
 {
 	int	nb;
@@ -92,6 +134,7 @@ int	init_philos(char **av, int ac, t_philo **philos, pthread_mutex_t **forks)
 	}
 	return (1);
 }
+*/
 
 int	init_forks(char **av, pthread_mutex_t **forks)
 {

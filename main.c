@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:47:34 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/10 12:11:37 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/10 13:38:32 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int ac, char **av)
 {
 	char			**str;
 	t_data			data;
-	t_philo			philo;
+	t_philo			*philo;
 	pthread_mutex_t	*forks;
 
 	str = NULL;
@@ -26,7 +26,8 @@ int	main(int ac, char **av)
 	str = &av[1];
 	if (!check_args(str, &data))
 		return (0);
-	collect_data(str, &data);
+	if (!collect_data(str, &data))
+		return (0);
 	
 	//init threads and mutexes
 	//printf("success !");
