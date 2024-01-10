@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:48:54 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/09 21:12:03 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/10 12:44:15 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <sys/time.h>
 # include <pthread.h>
 # include <limits.h>
+
+typedef enum s_bool { alive, dead }	t_bool;
 
 typedef struct s_data
 {
@@ -42,6 +44,6 @@ int			check_args(char **str, t_data *data);
 long int	ft_atoi(const char *str);
 
 /* Collect_data.c */
-void	collect_data(char **str, t_data *data);
+void		collect_data(char **str, t_data *data);
 
 #endif
