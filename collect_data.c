@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 20:57:33 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/10 13:54:35 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/11 13:12:51 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	collect_data(char **str, t_data *data)
 	data->t_sleep = ft_atoi(str[4]);
 	if (str[5])
 		data->nb_meals = ft_atoi(str[5]);
+	else
+		data->nb_meals = 0;
 	if (!init_mutex_data(data))
 		return (0);
 	return (1);

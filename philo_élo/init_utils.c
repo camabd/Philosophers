@@ -6,12 +6,21 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 11:30:46 by elrichar          #+#    #+#             */
-/*   Updated: 2024/01/10 14:26:49 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/11 12:47:11 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
+void	set_common_vars(char **av, int i, t_philo **philos)
+{
+	(*philos)[i].thread_id = 0;
+	(*philos)[i].meals_eaten = 0;
+	(*philos)[i].last_meal = 0;
+	(*philos)[i].pos = i + 1;
+}
+
+/*
 void	set_common_vars(char **av, int i, t_philo **philos)
 {
 	(*philos)[i].thread_id = 0;
@@ -23,6 +32,7 @@ void	set_common_vars(char **av, int i, t_philo **philos)
 	(*philos)[i].last_meal = 0;
 	(*philos)[i].pos = i + 1;
 }
+*/
 
 void	set_forks(int i, int nb, t_philo **philos, pthread_mutex_t **forks)
 {
@@ -31,7 +41,7 @@ void	set_forks(int i, int nb, t_philo **philos, pthread_mutex_t **forks)
 		(*philos)[i].l_fork = (*forks);
 		(*philos)[i].r_fork = NULL;
 	}
-	else if (i = 0)
+	else if (i == 0)
 	{
 		(*philos)[i].l_fork = (*forks);
 		(*philos)[i].r_fork = (*forks) + (nb - 1);

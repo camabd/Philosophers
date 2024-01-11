@@ -6,12 +6,37 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 21:16:57 by elrichar          #+#    #+#             */
-/*   Updated: 2024/01/10 14:05:09 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/11 13:26:42 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
+int	init_data_philos(char **av, int ac, t_philo **philos)
+{
+	int				i;
+	int				nb;
+	static t_bool	status;
+	static int		init_check;
+	long long		time;
+
+	i = -1;
+	nb = ft_atoi(av[1]);
+	status = alive;
+	init_check = 0;
+	time = get_time();
+	while (++i < nb)
+	{
+		set_common_vars(av, i, philos);
+		(*philos)[i].(*status) = alive;
+		(*philos)[i].time = time;
+		(*philos)[i].init_check = &init_check;
+		set_sync(nb, i, philos);
+	}
+	return (1);
+}
+
+/*
 int	init_data_philos(char **av, int ac, t_philo **philos)
 {
 	int				i;
@@ -39,6 +64,7 @@ int	init_data_philos(char **av, int ac, t_philo **philos)
 	}
 	return (1);
 }
+*/
 /*
 int	init_mutex_philos(int nb, t_philo **philos, pthread_mutex_t **forks)
 {
@@ -138,6 +164,34 @@ int	init_philos(char **av, int ac, t_philo **philos, pthread_mutex_t **forks)
 
 int	init_forks(char **av, pthread_mutex_t **forks)
 {
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	*forks = malloc(sizeof(pthread_mutex_t) * data->nb_philos);
+	if (!*forks)
+		return (0);
+	while (i < data->nb_philos)
+	{
+		if (pthread_mutex_init((&((*forks)[i])), NULL) != 0)
+		{
+			while (j < i)
+			{
+				if (pthread_mutex_destroy(&((*forks)[j])))
+					return (write(2, "Error : mutex_destroy issue\n", 28), 0);
+				j++;
+			}
+			return (write(2, "Error : mutex_init\n", 19), free (*forks), 0);
+		}
+		i++;
+	}
+	return (1);
+}
+
+/*
+int	init_forks(char **av, pthread_mutex_t **forks)
+{
 	int	nb;
 	int	i;
 	int	j;
@@ -164,6 +218,7 @@ int	init_forks(char **av, pthread_mutex_t **forks)
 	}
 	return (1);
 }
+*/
 
 int	init_variables(char **av, int ac, pthread_mutex_t **forks, t_philo **philos)
 {

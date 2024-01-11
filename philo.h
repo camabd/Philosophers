@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:48:54 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/10 14:21:24 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/11 13:15:08 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,14 @@ typedef struct s_data
 
 typedef struct s_philo
 {
-	int		n;
-	t_bool	status;
+	pthread_t		thread_id;
+	t_bool			status;
+	int				pos;
+	int				meals_eaten;
+	pthread_mutex_t	*l_fork;
+	pthread_mutex_t	*r_fork;
+	long long		last_meal;
+	long long		time;
 }t_philo;
 
 /* Check_args.c */
@@ -48,5 +54,8 @@ long int	ft_atoi(const char *str);
 
 /* Collect_data.c */
 int			collect_data(char **str, t_data *data);
+
+/* Init_variables.c */
+int			init_var(char **str, pthread_mutex_t **forks, t_philo **philo, t_data *data);
 
 #endif
