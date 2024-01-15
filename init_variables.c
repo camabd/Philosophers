@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:07:15 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/15 14:06:53 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/15 20:17:25 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,11 @@ static int	init_data_philo(t_philo **philo, pthread_mutex_t **forks, t_data *dat
 	while (++i < data->nb_philos)
 	{
 		set_forks(philo, forks, i, data->nb_philos);
+		(*philo)[i].thread_id = 0;
 		(*philo)[i].status = alive;
-		(*philo)[i].l_fork
+		(*philo)[i].pos = i + 1;
+		(*philo)[i].meals_eaten = 0;
+		(*philo)[i].last_meal = 0;
 	}
 	
 }
