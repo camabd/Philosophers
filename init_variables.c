@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:07:15 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/15 20:17:25 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/17 12:28:07 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,19 @@ static void	set_forks(t_philo **philo, pthread_mutex_t **forks, int i, int nb_ph
 	}
 }
 
+/*pourquoi mettre struct avant timeval alors qu'on ne fait
+pas comme ça habituellement pour déclarer des structures que
+ l'on crée nous meme ?
+ */
+static long long	get_time(void)
+{
+	struct timeval	time;
+
+	if (gettimeofday(&time, NULL) != 0)
+		return (printf("gettimeofday function error !\n", 0));
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+}
+
 static int	init_data_philo(t_philo **philo, pthread_mutex_t **forks, t_data *data)
 {
 	int	i;
@@ -47,6 +60,10 @@ static int	init_data_philo(t_philo **philo, pthread_mutex_t **forks, t_data *dat
 		(*philo)[i].pos = i + 1;
 		(*philo)[i].meals_eaten = 0;
 		(*philo)[i].last_meal = 0;
+		(*philo)[i].time = get_time(void);
+		if ((*philo)[i].time == 0)
+			return (0);
+		
 	}
 	
 }
