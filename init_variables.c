@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:07:15 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/17 12:28:07 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/18 16:55:44 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,18 @@ static long long	get_time(void)
 		return (printf("gettimeofday function error !\n", 0));
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
-
+/* Variable sync et  variables init_check nécessaires ?*/
 static int	init_data_philo(t_philo **philo, pthread_mutex_t **forks, t_data *data)
 {
-	int	i;
+	int			i;
+	long long	time;
 
 	i = -1;
 	(*philo) = malloc(data->nb_philos * sizeof(t_philo));
 	if (!(*philo))
+		return (0);
+	time = get_time();
+	if (!time)
 		return (0);
 	while (++i < data->nb_philos)
 	{
@@ -60,12 +64,9 @@ static int	init_data_philo(t_philo **philo, pthread_mutex_t **forks, t_data *dat
 		(*philo)[i].pos = i + 1;
 		(*philo)[i].meals_eaten = 0;
 		(*philo)[i].last_meal = 0;
-		(*philo)[i].time = get_time(void);
-		if ((*philo)[i].time == 0)
-			return (0);
-		
+		(*philo)[i].time = time;
 	}
-	
+	return (1);
 }
 
 static int	init_mutex_forks(pthread_mutex_t **forks, t_data *data)
@@ -98,4 +99,5 @@ int	init_var(char **str, pthread_mutex_t **forks, t_philo **philo, t_data *data)
 	if (!init_mutex_forks(forks, data))
 		return (0);
 	if (!init_data_philo(philo, forks, data))
+		return (0);
 }
