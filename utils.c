@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 16:05:34 by cabdli            #+#    #+#             */
-/*   Updated: 2023/12/28 16:07:09 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/19 13:21:10 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,13 @@ long int	ft_atoi(const char *str)
 		i++;
 	}
 	return (m * nb);
+}
+
+void	free_all(t_data *data, pthread_mutex_t forks, t_philo *philo)
+{
+	if (pthread_mutex_destroy(data->check_status) != 0)
+		return (printf("Error: check_status mutex destroy issue\n"), 0);
+	if (pthread_mutex_destroy(data->write) != 0)
+		return (printf("Error: write mutex destroy issue\n"), 0);
+	
 }

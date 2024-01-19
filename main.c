@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:47:34 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/11 13:44:01 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/19 13:22:57 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(int ac, char **av)
 	if (!collect_data(str, &data))
 		return (0);
 	if (!init_var(str, &forks, &philo, &data))
+		return (free_all(&data, forks, philo), 0);
 		
 	//init threads and mutexes
 	//printf("success !");

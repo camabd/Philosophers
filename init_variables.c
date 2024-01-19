@@ -6,11 +6,51 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:07:15 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/18 16:55:44 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/19 13:14:32 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+static int	init_mutex_forks(pthread_mutex_t **forks, t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	j = -1;
+	(*forks) = malloc(data->nb_philos * sizeof(pthread_mutex_t));
+	if (!(*forks))
+		return (0);
+	while (++i < data->nb_philos)
+	{
+		if (pthread_mutex_init((&((*forks)[i])), NULL) != 0)
+		{
+			while (++j < i)
+			{
+				if (pthread_mutex_destroy((&((*forks)[j]))) != 0)
+					return (printf("Error, fork mutex destroy issue !\n"), 0);
+			}
+			free(*forks);
+			(*forks) = NULL;
+			return (printf("Error, fork[%d] mutex_init issue !\n", i), 0);
+		}
+	}
+	return (1);
+}
+
+/*Pourquoi mettre struct avant timeval alors qu'on ne fait
+pas comme ça habituellement pour déclarer des structures que
+ l'on crée nous meme ?
+ */
+static long long	get_time(void)
+{
+	struct timeval	time;
+
+	if (gettimeofday(&time, NULL) != 0)
+		return (printf("gettimeofday function error !\n", 0));
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+}
 
 static void	set_forks(t_philo **philo, pthread_mutex_t **forks, int i, int nb_philos)
 {
@@ -31,18 +71,6 @@ static void	set_forks(t_philo **philo, pthread_mutex_t **forks, int i, int nb_ph
 	}
 }
 
-/*pourquoi mettre struct avant timeval alors qu'on ne fait
-pas comme ça habituellement pour déclarer des structures que
- l'on crée nous meme ?
- */
-static long long	get_time(void)
-{
-	struct timeval	time;
-
-	if (gettimeofday(&time, NULL) != 0)
-		return (printf("gettimeofday function error !\n", 0));
-	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
-}
 /* Variable sync et  variables init_check nécessaires ?*/
 static int	init_data_philo(t_philo **philo, pthread_mutex_t **forks, t_data *data)
 {
@@ -69,35 +97,12 @@ static int	init_data_philo(t_philo **philo, pthread_mutex_t **forks, t_data *dat
 	return (1);
 }
 
-static int	init_mutex_forks(pthread_mutex_t **forks, t_data *data)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	j = -1;
-	(*forks) = malloc(data->nb_philos * sizeof(pthread_mutex_t));
-	if (!(*forks))
-		return (0);
-	while (++i < data->nb_philos)
-	{
-		if (pthread_mutex_init((&((*forks)[i])), NULL) != 0)
-		{
-			while (++j < i)
-			{
-				if (pthread_mutex_destroy((&((*forks)[j]))) != 0)
-					return (printf("Error, fork mutex destroy issue !\n"), 0);
-			}
-			return (printf("Error, fork[%d] mutex_init issue !\n", i), 0);
-		}
-	}
-	return (1);
-}
 
 int	init_var(char **str, pthread_mutex_t **forks, t_philo **philo, t_data *data)
 {
 	if (!init_mutex_forks(forks, data))
-		return (0);
+		return (printf("Error in init_mutex_forks function\n"), 0);
 	if (!init_data_philo(philo, forks, data))
-		return (0);
+		return (printf("Error in init_data_philo function\n"), 0);
+	return (1);
 }
