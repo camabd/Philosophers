@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 16:05:34 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/19 13:21:10 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/22 12:08:56 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,24 @@ long int	ft_atoi(const char *str)
 	return (m * nb);
 }
 
-void	free_all(t_data *data, pthread_mutex_t forks, t_philo *philo)
+void	free_destroy_all(t_data *data, pthread_mutex_t *forks, t_philo *philo)
 {
+	int	j;
+
+	j = -1;
 	if (pthread_mutex_destroy(data->check_status) != 0)
 		return (printf("Error: check_status mutex destroy issue\n"), 0);
 	if (pthread_mutex_destroy(data->write) != 0)
 		return (printf("Error: write mutex destroy issue\n"), 0);
-	
+	if (forks)
+	{
+		while (++j < data->i)
+		{
+			if (pthread_mutex_destroy(&(forks[j])) != 0)
+				return (printf("Error, fork mutex destroy issue !\n"), 0);
+		}
+		free(forks);
+	}
+	if (philo)
+		free(philo);
 }

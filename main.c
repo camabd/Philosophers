@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:47:34 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/19 13:22:57 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/22 13:22:30 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,14 @@ int	main(int ac, char **av)
 	if (!collect_data(str, &data))
 		return (0);
 	if (!init_var(str, &forks, &philo, &data))
-		return (free_all(&data, forks, philo), 0);
-		
-	//init threads and mutexes
-	//printf("success !");
+		return (free_destroy_all(&data, forks, philo), 0);
+	if (!init_join_threads(philo, &data))
+		return (free_destroy_all(&data, forks, philo), 0);
+	free_destroy_all(&data, forks, philo);
 	return (1);
 }
+
+// Mettre write pour tous les printf de init_threads
+// pour éviter les data race ?
+// !!!!! AJOUTER ROUTINE A FONCTION INIT THREADS !!!!!!
+// si fonction join ne fonctionne pas, pk continuer quand meme le pgme ?

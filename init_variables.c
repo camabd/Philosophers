@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:07:15 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/19 13:14:32 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/22 11:50:45 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,13 @@
 
 static int	init_mutex_forks(pthread_mutex_t **forks, t_data *data)
 {
-	int	i;
-	int	j;
-
-	i = -1;
-	j = -1;
 	(*forks) = malloc(data->nb_philos * sizeof(pthread_mutex_t));
 	if (!(*forks))
 		return (0);
-	while (++i < data->nb_philos)
+	while (++data->i < data->nb_philos)
 	{
-		if (pthread_mutex_init((&((*forks)[i])), NULL) != 0)
-		{
-			while (++j < i)
-			{
-				if (pthread_mutex_destroy((&((*forks)[j]))) != 0)
-					return (printf("Error, fork mutex destroy issue !\n"), 0);
-			}
-			free(*forks);
-			(*forks) = NULL;
-			return (printf("Error, fork[%d] mutex_init issue !\n", i), 0);
-		}
+		if (pthread_mutex_init((&((*forks)[data->i])), NULL) != 0)
+			return (printf("Error, fork[%d] mutex_init issue !\n", data->i), 0);
 	}
 	return (1);
 }

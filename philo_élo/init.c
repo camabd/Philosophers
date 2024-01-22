@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 21:16:57 by elrichar          #+#    #+#             */
-/*   Updated: 2024/01/11 13:26:42 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/22 12:12:14 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,8 @@ int	init_mutex_philos(int nb, t_philo **philos, pthread_mutex_t **forks)
 	return (1);
 }
 
-
+// puisque les check dead et writing correspondent au meme pointeur,
+// pk ne pas les destroy une seule fois comme dans free and destroy ?
 int	init_philos(char **str, int ac, t_philo **philos, pthread_mutex_t **forks, t_data *data)
 {
 	int	i;
