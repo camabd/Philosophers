@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:48:54 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/22 13:29:50 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/23 11:29:13 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ int			init_var(char **str, pthread_mutex_t **forks, t_philo **philo, t_data *dat
 int			init_join_threads(t_philo *philo, t_data *data);
 
 /* Routine.c */
+void	*	routine(void *arg);
 
 #endif

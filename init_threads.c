@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 12:15:52 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/22 13:33:41 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/23 11:32:26 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	init_threads(t_philo *philo, t_data *data)
 	i = -1;
 	while (++i < data->nb_philos)
 	{
-		if (pthread_create(&(philo[i].thread_id), NULL, routine(), \
+		if (pthread_create(&(philo[i].thread_id), NULL, routine, \
 		(void *)(&philo[i])) != 0)
 		{
 			write(2, "Error : pthread_create function failure\n", 41);
