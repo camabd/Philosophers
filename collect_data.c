@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 20:57:33 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/22 11:45:50 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/24 17:57:00 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	collect_data(char **str, t_data *data)
 	data->t_eat = ft_atoi(str[3]);
 	data->t_sleep = ft_atoi(str[4]);
 	data->i = -1;
+	data->status = alive;
 	if (str[5])
 		data->nb_meals = ft_atoi(str[5]);
 	else

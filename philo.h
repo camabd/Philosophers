@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:48:54 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/23 11:29:13 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/24 17:54:45 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_data
 	long long		t_sleep;
 	int				nb_meals;
 	pthread_mutex_t	*check_status;
+	t_bool			status;
 	pthread_mutex_t	*write;
 	int				i;
 }t_data;
@@ -38,13 +39,14 @@ typedef struct s_data
 typedef struct s_philo
 {
 	pthread_t		thread_id;
-	t_bool			status;
+	int				nb_philos;
 	int				pos;
 	int				meals_eaten;
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*r_fork;
 	long long		last_meal;
 	long long		time;
+	t_data			*data;
 }t_philo;
 
 /* Check_args.c */
@@ -59,6 +61,7 @@ int			collect_data(char **str, t_data *data);
 
 /* Init_variables.c */
 int			init_var(char **str, pthread_mutex_t **forks, t_philo **philo, t_data *data);
+long long	get_time(void);
 
 /* Init_threads.c */
 int			init_join_threads(t_philo *philo, t_data *data);

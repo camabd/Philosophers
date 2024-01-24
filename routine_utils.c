@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   routine.c                                          :+:      :+:    :+:   */
+/*   routine_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/22 13:28:02 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/24 16:53:20 by cabdli           ###   ########.fr       */
+/*   Created: 2024/01/24 17:38:34 by cabdli            #+#    #+#             */
+/*   Updated: 2024/01/24 18:10:30 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
-//1000 ms = approximation de temps de création d'un thread
-//usleep(1000) = 1000 microsec = 1 ms
-static void	handle_departure(t_philo *philo)
+int	print_message(t_philo *philo, char *str)
 {
-	philo->time = philo->time + (philo->nb_philos * 1000);
-	while (get_time() < philo->time)
-		usleep(1000);
-	philo->last_meal = get_time;
-}
-
-void	*routine(void *arg)
-{
-	t_philo	*philo;
-
-	philo = (t_philo *)arg;
-	handle_departure(philo)
+	if (philo_dead)
+		return (0);
+	/*pthread_mutex_lock(philo->data->check_status);
+	if (philo->data->status == dead)
+		return (pthread_mutex_unlock(philo->data->check_status), 0);
+		A mettre dans is_dead*/
+	pthread_mutex_lock(philo->data->write);
+	printf("%lld %d %s\n", (get_time() - philo->time), philo->pos, str);
 }

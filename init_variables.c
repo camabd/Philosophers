@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:07:15 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/22 11:50:45 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/24 17:59:06 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	init_mutex_forks(pthread_mutex_t **forks, t_data *data)
 pas comme ça habituellement pour déclarer des structures que
  l'on crée nous meme ?
  */
-static long long	get_time(void)
+long long	get_time(void)
 {
 	struct timeval	time;
 
@@ -74,11 +74,12 @@ static int	init_data_philo(t_philo **philo, pthread_mutex_t **forks, t_data *dat
 	{
 		set_forks(philo, forks, i, data->nb_philos);
 		(*philo)[i].thread_id = 0;
-		(*philo)[i].status = alive;
+		(*philo)[i].nb_philos = data->nb_philos;
 		(*philo)[i].pos = i + 1;
 		(*philo)[i].meals_eaten = 0;
 		(*philo)[i].last_meal = 0;
 		(*philo)[i].time = time;
+		(*philo)[i].data = data;
 	}
 	return (1);
 }
