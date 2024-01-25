@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:48:54 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/25 14:22:45 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/25 14:51:35 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int			init_join_threads(t_philo *philo, t_data *data);
 void		*routine(void *arg);
 
 /* Routine_utils.c */
+int			philo_dead(t_philo *philo);
 int			print_message(t_philo *philo, char *str);
 
 #endif

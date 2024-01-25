@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 13:28:02 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/24 16:53:20 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/25 14:57:30 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static void	handle_departure(t_philo *philo)
 	while (get_time() < philo->time)
 		usleep(1000);
 	philo->last_meal = get_time;
+	print_message(philo, "is thinking");
+	
 }
 
 void	*routine(void *arg)

@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:07:15 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/25 14:35:19 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/25 14:39:25 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ t_data *data)
 	}
 	return (1);
 }
-
 
 int	init_var(char **str, pthread_mutex_t **forks, t_philo **philo, t_data *data)
 {
