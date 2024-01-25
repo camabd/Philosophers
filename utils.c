@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 16:05:34 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/22 12:08:56 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/25 14:17:00 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,17 @@ void	free_destroy_all(t_data *data, pthread_mutex_t *forks, t_philo *philo)
 	}
 	if (philo)
 		free(philo);
+}
+
+/*Pourquoi mettre struct avant timeval alors qu'on ne fait
+pas comme ça habituellement pour déclarer des structures que
+ l'on crée nous meme ?
+ */
+long long	get_time(void)
+{
+	struct timeval	time;
+
+	if (gettimeofday(&time, NULL) != 0)
+		return (printf("gettimeofday function error !\n", 0));
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }

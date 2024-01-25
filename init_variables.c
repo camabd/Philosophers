@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:07:15 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/24 17:59:06 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/25 14:35:19 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,8 @@ static int	init_mutex_forks(pthread_mutex_t **forks, t_data *data)
 	return (1);
 }
 
-/*Pourquoi mettre struct avant timeval alors qu'on ne fait
-pas comme ça habituellement pour déclarer des structures que
- l'on crée nous meme ?
- */
-long long	get_time(void)
-{
-	struct timeval	time;
-
-	if (gettimeofday(&time, NULL) != 0)
-		return (printf("gettimeofday function error !\n", 0));
-	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
-}
-
-static void	set_forks(t_philo **philo, pthread_mutex_t **forks, int i, int nb_philos)
+static void	set_forks(t_philo **philo, pthread_mutex_t **forks, \
+int i, int nb_philos)
 {
 	if (nb_philos == 1)
 	{
@@ -57,8 +45,23 @@ static void	set_forks(t_philo **philo, pthread_mutex_t **forks, int i, int nb_ph
 	}
 }
 
-/* Variable sync et  variables init_check nécessaires ?*/
-static int	init_data_philo(t_philo **philo, pthread_mutex_t **forks, t_data *data)
+static void	init_philo_values(t_philo **philo, int i, t_data *data)
+{
+	(*philo)[i].thread_id = 0;
+	(*philo)[i].nb_philos = data->nb_philos;
+	(*philo)[i].t_die = data->t_die;
+	(*philo)[i].t_eat = data->t_eat;
+	(*philo)[i].t_sleep = data->t_sleep;
+	(*philo)[i].nb_meals = data->nb_meals;
+	(*philo)[i].pos = i + 1;
+	(*philo)[i].meals_eaten = 0;
+	(*philo)[i].last_meal = 0;
+	(*philo)[i].data = data;
+}
+
+/* Variable sync et variables init_check nécessaires ?*/
+static int	init_data_philo(t_philo **philo, pthread_mutex_t **forks, \
+t_data *data)
 {
 	int			i;
 	long long	time;
@@ -73,13 +76,8 @@ static int	init_data_philo(t_philo **philo, pthread_mutex_t **forks, t_data *dat
 	while (++i < data->nb_philos)
 	{
 		set_forks(philo, forks, i, data->nb_philos);
-		(*philo)[i].thread_id = 0;
-		(*philo)[i].nb_philos = data->nb_philos;
-		(*philo)[i].pos = i + 1;
-		(*philo)[i].meals_eaten = 0;
-		(*philo)[i].last_meal = 0;
 		(*philo)[i].time = time;
-		(*philo)[i].data = data;
+		init_philo_values(philo, i, data);
 	}
 	return (1);
 }

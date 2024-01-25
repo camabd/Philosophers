@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:38:34 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/25 12:35:14 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/25 14:12:35 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	philo_dead(t_philo *philo)
 {
-	
+	if (get_time() - philo->last_meal > philo-)
 }
 
 int	print_message(t_philo *philo, char *str)
