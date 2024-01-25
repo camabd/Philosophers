@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:47:34 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/25 14:32:42 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/25 16:29:20 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,5 @@ int	main(int ac, char **av)
 	return (1);
 }
 
-// Mettre write pour tous les printf de init_threads
-// pour éviter les data race ?
-// !!!!! AJOUTER ROUTINE A FONCTION INIT THREADS !!!!!!
 // si fonction join ne fonctionne pas, pk continuer quand meme le pgme ?
+// Tester avec differents temps de creation d'un philo, dans handle departure
