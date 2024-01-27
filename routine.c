@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 13:28:02 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/25 16:31:27 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/27 12:53:15 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,15 @@ static void	handle_departure(t_philo *philo)
 		usleep((philo->t_eat / 2) * 1000);
 }
 
-static void	one_philo(t_philo *philo)
+static void	*one_philo(t_philo *philo)
 {
 	pthread_mutex_lock(philo->l_fork);
-	
+	pthread_mutex_lock(philo->data->check_status);
+	pthread_mutex_lock(philo->data->write);
+	usleep((philo->t_die + 1) * 1000);
+	philo_dead(philo);
+	pthread_mutex_unlock(philo->l_fork);
+	return (NULL);
 }
 
 void	*routine(void *arg)
@@ -51,6 +56,9 @@ void	*routine(void *arg)
 	philo = (t_philo *)arg;
 	handle_departure(philo);
 	if (philo->nb_philos == 1)
-		one_philo(philo)
-	
+		return (one_philo(philo));
+	while (!philo_dead(philo))
+	{
+		
+	}
 }
