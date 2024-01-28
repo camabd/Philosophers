@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:48:54 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/25 14:51:35 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/28 12:17:13 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,8 @@ void		*routine(void *arg);
 /* Routine_utils.c */
 int			philo_dead(t_philo *philo);
 int			print_message(t_philo *philo, char *str);
+
+/* Take_forks.c */
+int			take_forks(t_philo *philo);
 
 #endif
