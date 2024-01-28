@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 13:28:02 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/27 12:53:15 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/28 12:58:18 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void	*routine(void *arg)
 		return (one_philo(philo));
 	while (!philo_dead(philo))
 	{
+		if (!take_forks(philo))
+			return (NULL);
 		
 	}
 }

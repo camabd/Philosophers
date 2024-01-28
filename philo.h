@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:48:54 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/28 12:17:13 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/28 13:50:26 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ int			print_message(t_philo *philo, char *str);
 
 /* Take_forks.c */
 int			take_forks(t_philo *philo);
+int			eat(t_philo *philo);
 
 #endif
