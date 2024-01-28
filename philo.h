@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:48:54 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/28 16:05:48 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/28 20:29:55 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,11 @@ int			my_usleep(t_philo *philo, long long begining, long long duration);
 
 /* Take_forks.c */
 int			take_forks(t_philo *philo);
+void		drop_forks(t_philo *philo);
+
+/* Actions.c */
 int			eat(t_philo *philo);
+int			sleep(t_philo *philo);
+int			think(t_philo *philo);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 13:28:02 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/28 12:58:18 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/28 20:51:11 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,13 @@ void	*routine(void *arg)
 	{
 		if (!take_forks(philo))
 			return (NULL);
-		
+		if (!eat(philo))
+			return (NULL);
+		if (!sleep(philo))
+			return (NULL);
+		if (!think(philo))
+			return (NULL);
+		//wait_after_thinking(philo->sync);
 	}
+	return (NULL);
 }

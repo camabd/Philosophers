@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:38:34 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/28 16:27:28 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/28 20:24:08 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,14 @@ int	print_message(t_philo *philo, char *str)
 int	my_usleep(t_philo *philo, long long begining, long long duration)
 {
 	long long	end_time;
-	long long	t_of_death;
+	long long	time_of_death;
 
 	end_time = begining + duration;
-	t_of_death = begining + philo->t_die;
+	time_of_death = philo->last_meal + philo->t_die;
 	while (get_time() < end_time)
 	{
 		usleep(330);
-		if (get_time() > t_of_death)
+		if (get_time() > time_of_death)
 			return (philo_dead(philo), 0);
 	}
 	return (1);
