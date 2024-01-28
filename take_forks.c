@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 12:09:37 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/28 13:53:03 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/28 16:05:25 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,21 @@ int	take_forks(t_philo *philo)
 	return (1);
 }
 
+/*
+Remarque : 
+time_to_die (in milliseconds): If a philosopher didn’t start eating
+time_to_die milliseconds since the beginning of their last meal or
+the beginning of the simulation, they die.
+t_die = max time between the begining of two consecutive meals
+donc on fait philo->last_meal = get_time(); au début du repas !!!
+*/
 int	eat(t_philo *philo)
 {
 	if (!print_message(philo, "is eating"))
 		return (drop_forks(philo), 0);
+	philo->last_meal = get_time();
 	if (philo->nb_meals)
 		philo->meals_eaten++;
+	if (!my_usleep(philo, philo->last_meal, philo->t_eat))
+		return (drop_forks(philo), 0);
 }
