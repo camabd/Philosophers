@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:07:15 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/25 14:39:25 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/29 14:41:28 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,18 @@ int i, int nb_philos)
 {
 	if (nb_philos == 1)
 	{
-		(*philo)[i].l_fork = (*fork);
+		(*philo)[i].l_fork = (*forks);
 		(*philo)[i].r_fork = NULL;
 	}
 	else if (i == 0)
 	{
-		(*philo)[i].l_fork = (*fork);
-		(*philo)[i].r_fork = (*fork) + (nb_philos - 1);
+		(*philo)[i].l_fork = (*forks);
+		(*philo)[i].r_fork = (*forks) + (nb_philos - 1);
 	}
 	else
 	{
-		(*philo)[i].l_fork = (*fork) + i;
-		(*philo)[i].r_fork = (*fork) + (i - 1);
+		(*philo)[i].l_fork = (*forks) + i;
+		(*philo)[i].r_fork = (*forks) + (i - 1);
 	}
 }
 
@@ -82,7 +82,7 @@ t_data *data)
 	return (1);
 }
 
-int	init_var(char **str, pthread_mutex_t **forks, t_philo **philo, t_data *data)
+int	init_var(pthread_mutex_t **forks, t_philo **philo, t_data *data)
 {
 	if (!init_mutex_forks(forks, data))
 		return (printf("Error in init_mutex_forks function\n"), 0);

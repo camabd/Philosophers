@@ -6,7 +6,7 @@
 #    By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/29 12:30:49 by cabdli            #+#    #+#              #
-#    Updated: 2024/01/29 13:04:49 by cabdli           ###   ########.fr        #
+#    Updated: 2024/01/29 16:47:00 by cabdli           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,9 +37,9 @@ SRCS	=	main.c				\
 
 CC		=	cc
 
-CFLAGS	=	-Wall -Wextra -Werror -pthread
+CFLAGS	=	-Wall -Wextra -Werror -pthread 
 #-fsanitize=address
-#-fsanitize=thread -g
+# -fsanitize=thread -g3
 
 OBJ		=	$(SRCS:.c=.o)
 
@@ -53,22 +53,22 @@ OFILES	=	.ofiles/
 
 all:	$(NAME)
 
-# %.o: %.c
-# 	@$(CC) $(CFLAGS) -c $< -o $@
-
 $(OFILES):
 	@mkdir -p .ofiles
 
-$(OFILES)%.o:	%.c
-	$(CC) $(CFLAGS) -c $< -o $@
+%.o: %.c
+	@$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): $(addprefix $(OFILES), $(OBJ)) philosophers.h
+$(OFILES)%.o:	%.c
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(NAME): $(OFILES) $(addprefix $(OFILES), $(OBJ)) philo.h
 	@$(CC) $(CFLAGS) $(addprefix $(OFILES), $(OBJ)) -o $@ -lpthread
 	@echo "Making philo..."
 	@echo "Ready !"
-
+	
 clean:
-	@rm -rf $(BUILD)
+	@rm -rf $(OFILES)
 
 fclean:	clean
 	rm -f $(NAME)

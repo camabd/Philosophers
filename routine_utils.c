@@ -6,20 +6,20 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:38:34 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/28 20:24:08 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/29 15:50:17 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philo.h>
+#include "philo.h"
 
 int	philo_dead(t_philo *philo)
 {	
 	pthread_mutex_lock(philo->data->check_status);
 	if ((get_time() - philo->last_meal) > philo->t_die)
 	{
-		if (philo->data->check_status == alive)
+		if (philo->data->status == alive)
 		{
-			philo->data->check_status = dead;
+			philo->data->status = dead;
 			pthread_mutex_lock(philo->data->write);
 			printf("%lld %d died\n", (get_time() - philo->time), philo->pos);
 			pthread_mutex_unlock(philo->data->write);
@@ -27,7 +27,7 @@ int	philo_dead(t_philo *philo)
 		pthread_mutex_unlock(philo->data->check_status);
 		return (1);
 	}
-	if (philo->data->check_status == dead)
+	if (philo->data->status == dead)
 		return (pthread_mutex_unlock(philo->data->check_status), 1);
 	pthread_mutex_unlock(philo->data->check_status);
 	return (0);
@@ -35,7 +35,7 @@ int	philo_dead(t_philo *philo)
 
 int	print_message(t_philo *philo, char *str)
 {
-	if (philo_dead)
+	if (philo_dead(philo))
 		return (0);
 	pthread_mutex_lock(philo->data->check_status);
 	if (philo->data->status == dead)

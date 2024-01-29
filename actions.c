@@ -6,11 +6,11 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 19:53:49 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/28 20:50:34 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/29 14:32:44 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philo.h>
+#include "philo.h"
 
 static int	philo_fully_fed(t_philo *philo)
 {
@@ -43,7 +43,7 @@ int	eat(t_philo *philo)
 	return (1);
 }
 
-int	sleep(t_philo *philo)
+int	sleeping(t_philo *philo)
 {
 	long long	nap_time;
 

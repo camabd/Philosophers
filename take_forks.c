@@ -6,13 +6,13 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 12:09:37 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/28 19:58:10 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/29 14:52:35 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philo.h>
+#include "philo.h"
 
-static void	drop_forks(t_philo *philo)
+void	drop_forks(t_philo *philo)
 {
 	if (philo->pos % 2 == 0)
 	{
@@ -56,10 +56,14 @@ similaire dans les 2 cas ?*/
 int	take_forks(t_philo *philo)
 {
 	if (philo->pos % 2 == 0)
+	{
 		if (!even_takes_forks(philo))
 			return (0);
+	}
 	else
+	{
 		if (!odd_takes_forks(philo))
 			return (0);
+	}
 	return (1);
 }

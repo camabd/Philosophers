@@ -6,11 +6,11 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 12:15:52 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/23 14:21:35 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/29 14:35:39 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philo.h>
+#include "philo.h"
 
 static int	init_threads(t_philo *philo, t_data *data)
 {
@@ -34,7 +34,7 @@ static int	init_threads(t_philo *philo, t_data *data)
 	return (1);
 }
 
-static int	joind_threads(t_philo *philo, t_data *data)
+static int	join_threads(t_philo *philo, t_data *data)
 {
 	int	i;
 
@@ -54,7 +54,7 @@ int	init_join_threads(t_philo *philo, t_data *data)
 {
 	if (!init_threads(philo, data))
 		return (0);
-	if (!join_threads())
+	if (!join_threads(philo, data))
 		return (0);
 	return (1);
 }
