@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:48:54 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/29 15:22:17 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/31 14:15:30 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ int			check_args(char **str, t_data *data);
 
 /* Utils.c */
 long long	ft_atoi(const char *str);
-void		*free_destroy_all(t_data *data, pthread_mutex_t *forks, t_philo *philo);
+void		*free_destroy_all(t_data *data, pthread_mutex_t *forks, \
+			t_philo *philo);
 long long	get_time(void);
 
 /* Collect_data.c */

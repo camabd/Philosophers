@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 12:15:52 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/29 14:35:39 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/31 14:13:42 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static int	join_threads(t_philo *philo, t_data *data)
 
 //peut-on join juste apres la creation d'un thread,
 // avant de les avoirs tous crées ? donc le faire au fur et a mesure ?
-// Quel est l'intyeret de init check et check init == verifier si pb dans initialisation et arreter si oui avant modif
 int	init_join_threads(t_philo *philo, t_data *data)
 {
 	if (!init_threads(philo, data))

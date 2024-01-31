@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 12:09:37 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/29 14:52:35 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/31 14:08:32 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,6 @@ static int	odd_takes_forks(t_philo *philo)
 	return (1);
 }
 
-/* Pourquoi les fourchettes prises en premieres et
-lachees en premieres varient en fonction de la position du philo
-(philo pair ou impair) ? Permet d'être sur que lorsque le philo prend une fourchette
-les 2 sont disponibles ? mais pourquoi puisque le temps d'attente semble
-similaire dans les 2 cas ?*/
 int	take_forks(t_philo *philo)
 {
 	if (philo->pos % 2 == 0)
