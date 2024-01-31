@@ -6,7 +6,7 @@
 #    By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/29 12:30:49 by cabdli            #+#    #+#              #
-#    Updated: 2024/01/29 16:47:00 by cabdli           ###   ########.fr        #
+#    Updated: 2024/01/31 18:48:09 by cabdli           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,9 +69,12 @@ $(NAME): $(OFILES) $(addprefix $(OFILES), $(OBJ)) philo.h
 	
 clean:
 	@rm -rf $(OFILES)
+	@echo "Making clean..."
+	@echo "Done !"
 
 fclean:	clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@echo "philo deleted !"
 
 re: fclean all
 

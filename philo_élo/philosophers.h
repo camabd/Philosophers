@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 10:58:02 by elrichar          #+#    #+#             */
-/*   Updated: 2024/01/11 13:03:43 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/01/31 18:44:34 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 
 typedef enum s_bool{ alive, dead }	t_bool;
 
-/*
 typedef struct s_philo
 {
 	pthread_t		thread_id;
@@ -41,24 +40,7 @@ typedef struct s_philo
 	long long		time;
 	int				*init_check;
 	int				sync;
-}	t_philo;
-*/
-
-typedef struct s_philo
-{
-	pthread_t		thread_id;
-	pthread_mutex_t	*l_fork;
-	pthread_mutex_t	*r_fork;
-	int				pos;
-	t_bool			*status;
-	long long		last_meal;
-	int				meals_eaten;
-	long long		time;
-	
-	int				*init_check;
-	int				sync;
-}	t_philo;
-
+}	t_philo ;
 
 //actions.c
 int			my_usleep(t_philo *philo, long time);
