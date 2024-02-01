@@ -6,7 +6,7 @@
 #    By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/29 12:30:49 by cabdli            #+#    #+#              #
-#    Updated: 2024/01/31 18:48:09 by cabdli           ###   ########.fr        #
+#    Updated: 2024/02/01 15:50:01 by cabdli           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS	=	main.c				\
 			routine.c			\
 			take_forks.c		\
 			utils.c				\
+			#set_sync.c			\
 
 ################################################################################
 #                                                                              #
@@ -39,7 +40,7 @@ CC		=	cc
 
 CFLAGS	=	-Wall -Wextra -Werror -pthread 
 #-fsanitize=address
-# -fsanitize=thread -g3
+#  -fsanitize=thread -g
 
 OBJ		=	$(SRCS:.c=.o)
 

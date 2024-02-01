@@ -6,13 +6,13 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 13:28:02 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/31 14:12:17 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/02/01 16:09:20 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-//1000 ms = approximation de temps de création d'un thread
+//100 ms = approximation de temps de création d'un thread
 //usleep(1000) = 1000 microsec = 1 ms
 /* Rqes :
 - En cas de nb de philos paire, j'envoi les paires en premier et je
@@ -27,7 +27,7 @@ if ((philo->nb_philos % 2 != 0) && (philo->pos % 2 == 0))
 */
 static void	handle_departure(t_philo *philo)
 {
-	philo->time = philo->time + (philo->nb_philos * 1000);
+	philo->time = philo->time + (philo->nb_philos * 100);
 	while (get_time() < philo->time)
 		usleep(1000);
 	philo->last_meal = get_time();
@@ -36,17 +36,6 @@ static void	handle_departure(t_philo *philo)
 		usleep((philo->t_eat / 2) * 1000);
 	if ((philo->nb_philos % 2 != 0) && (philo->pos % 2 == 0))
 		usleep((philo->t_eat / 2) * 1000);
-}
-
-static void	*one_philo(t_philo *philo)
-{
-	pthread_mutex_lock(philo->l_fork);
-	printf("%lld %d has taken a fork\n", (get_time() - philo->time), \
-	philo->pos);
-	usleep((philo->t_die + 1) * 1000);
-	printf("%lld %d died\n", (get_time() - philo->time), philo->pos);
-	pthread_mutex_unlock(philo->l_fork);
-	return (NULL);
 }
 
 /* static void	*one_philo(t_philo *philo)
@@ -64,9 +53,30 @@ static void	*one_philo(t_philo *philo)
 	return (NULL);
 }*/
 
+static void	*one_philo(t_philo *philo)
+{
+	pthread_mutex_lock(philo->l_fork);
+	printf("%lld %d has taken a fork\n", (get_time() - philo->time), \
+	philo->pos);
+	usleep((philo->t_die + 1) * 1000);
+	printf("%lld %d died\n", (get_time() - philo->time), philo->pos);
+	pthread_mutex_unlock(philo->l_fork);
+	return (NULL);
+}
+
+// static void	wait_after_thinking(int delay)
+// {
+// 	long long	time_now;
+
+// 	time_now = get_time();
+// 	while (get_time() - time_now < delay)
+// 		usleep(50);
+// }
+
 void	*routine(void *arg)
 {
 	t_philo	*philo;
+	int i = 1;
 
 	philo = (t_philo *)arg;
 	handle_departure(philo);
@@ -74,6 +84,7 @@ void	*routine(void *arg)
 		return (one_philo(philo));
 	while (!philo_dead(philo))
 	{
+		printf("philo nb %d tour %d\n\n", philo->pos, i);
 		if (!take_forks(philo))
 			return (NULL);
 		if (!eat(philo))
@@ -82,6 +93,8 @@ void	*routine(void *arg)
 			return (NULL);
 		if (!think(philo))
 			return (NULL);
+		//wait_after_thinking(philo->sync);
+		i++;
 	}
 	return (NULL);
 }

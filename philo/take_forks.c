@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 12:09:37 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/31 14:08:32 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/02/01 16:19:44 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	drop_forks(t_philo *philo)
 static int	even_takes_forks(t_philo *philo)
 {
 	pthread_mutex_lock(philo->l_fork);
-	if (!print_message(philo, "has taken a fork (left)"))
+	if (!print_message(philo, "has taken a fork"))
 		return (pthread_mutex_unlock(philo->l_fork), 0);
 	pthread_mutex_lock(philo->r_fork);
-	if (!print_message(philo, "has taken a fork (right)"))
+	if (!print_message(philo, "has taken a fork"))
 		return (drop_forks(philo), 0);
 	return (1);
 }
@@ -40,10 +40,10 @@ static int	even_takes_forks(t_philo *philo)
 static int	odd_takes_forks(t_philo *philo)
 {
 	pthread_mutex_lock(philo->r_fork);
-	if (!print_message(philo, "has taken a fork (right)"))
+	if (!print_message(philo, "has taken a fork"))
 		return (pthread_mutex_unlock(philo->r_fork), 0);
 	pthread_mutex_lock(philo->l_fork);
-	if (!print_message(philo, "has taken a fork (left)"))
+	if (!print_message(philo, "has taken a fork"))
 		return (drop_forks(philo), 0);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:07:15 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/29 14:41:28 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/02/01 15:49:42 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static void	init_philo_values(t_philo **philo, int i, t_data *data)
 	(*philo)[i].meals_eaten = 0;
 	(*philo)[i].last_meal = 0;
 	(*philo)[i].data = data;
+	//set_sync(data->nb_philos, i, philo);
 }
 
 /* Variable sync et variables init_check nécessaires ?*/
