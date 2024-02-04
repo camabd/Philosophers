@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 19:53:49 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/31 14:48:03 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/02/04 20:07:06 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,13 @@
 static int	philo_fully_fed(t_philo *philo)
 {
 	if (philo->nb_meals)
+	{
 		if (philo->meals_eaten == philo->nb_meals)
 			return (1);
+	}
 	return (0);
 }
+
 
 /*
 Remarque : 
@@ -35,7 +38,7 @@ int	eat(t_philo *philo)
 	philo->last_meal = get_time();
 	if (philo->nb_meals)
 		philo->meals_eaten++;
-	if (!my_usleep(philo, philo->last_meal, philo->t_eat))
+	if (!my_usleep(philo, philo->t_eat))
 		return (drop_forks(philo), 0);
 	drop_forks(philo);
 	if (philo_fully_fed(philo))
@@ -45,12 +48,9 @@ int	eat(t_philo *philo)
 
 int	sleeping(t_philo *philo)
 {
-	long long	nap_time;
-
 	if (!print_message(philo, "is sleeping"))
 		return (0);
-	nap_time = get_time();
-	if (!my_usleep(philo, nap_time, philo->t_sleep))
+	if (!my_usleep(philo, philo->t_sleep))
 		return (0);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:47:34 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/31 14:12:44 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/02/04 20:26:45 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int ac, char **av)
 	forks = NULL;
 	philo = NULL;
 	if (ac != 5 && ac != 6)
-		return (printf("Error, wrong number of arguments !\n"), 0);
+		return (printf("Error : wrong number of arguments !\n"), 0);
 	str = &av[1];
 	if (!check_args(str, &data))
 		return (0);
@@ -37,6 +37,9 @@ int	main(int ac, char **av)
 	return (1);
 }
 
+
+
+
 /*Questions :
 - si fonction join ne fonctionne pas, pk continuer quand meme le pgme ?
 ==> si elle ne fonctionne pas j'arrete le pgme
@@ -44,7 +47,9 @@ int	main(int ac, char **av)
 - take_forks.c : Pourquoi les forks prises en 1eres et lachees en premieres
 varient en fonction de a position du philo (philo pair ou impair) ?
 Permet d'être sur que lorsque le philo prend une fourchette les 2 sont
-disponibles ? mais pourquoi puisque le temps d'attente semble
-similaire dans les 2 cas ?
+disponibles ? (temps d'attente  semble malgré  tout similaire dans les 2 cas)
 - routine.c fonction routine : wait_after_thinking(philo->sync); nécessaire ?
+
+pb éventuels :
+- structure philo->data->mutexes
 */

@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 13:28:02 by cabdli            #+#    #+#             */
-/*   Updated: 2024/02/01 16:09:20 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/02/04 20:45:38 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,19 +64,18 @@ static void	*one_philo(t_philo *philo)
 	return (NULL);
 }
 
-// static void	wait_after_thinking(int delay)
-// {
-// 	long long	time_now;
+static void	wait_after_thinking(int delay)
+{
+	long long	time_now;
 
-// 	time_now = get_time();
-// 	while (get_time() - time_now < delay)
-// 		usleep(50);
-// }
+	time_now = get_time();
+	while (get_time() - time_now < delay)
+		usleep(50);
+}
 
 void	*routine(void *arg)
 {
 	t_philo	*philo;
-	int i = 1;
 
 	philo = (t_philo *)arg;
 	handle_departure(philo);
@@ -84,7 +83,6 @@ void	*routine(void *arg)
 		return (one_philo(philo));
 	while (!philo_dead(philo))
 	{
-		printf("philo nb %d tour %d\n\n", philo->pos, i);
 		if (!take_forks(philo))
 			return (NULL);
 		if (!eat(philo))
@@ -93,8 +91,7 @@ void	*routine(void *arg)
 			return (NULL);
 		if (!think(philo))
 			return (NULL);
-		//wait_after_thinking(philo->sync);
-		i++;
+		wait_after_thinking(philo->sync);
 	}
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 15:24:55 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/31 14:14:36 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/02/04 20:33:46 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	at_least_1_philo(char *str, t_data *data)
 
 	philo = ft_atoi(str);
 	if (philo == 0)
-		return (printf("Error, there should be at leat 1 philo !\n"), 0);
+		return (printf("Error, there should be at least 1 philo !\n"), 0);
 	else
 		data->nb_philos = philo;
 	return (1);

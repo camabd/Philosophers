@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:48:54 by cabdli            #+#    #+#             */
-/*   Updated: 2024/02/01 15:41:10 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/02/04 19:53:36 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void		*routine(void *arg);
 /* Routine_utils.c */
 int			philo_dead(t_philo *philo);
 int			print_message(t_philo *philo, char *str);
-int			my_usleep(t_philo *philo, long long begining, long long duration);
+int			my_usleep(t_philo *philo, long duration);
 
 /* Take_forks.c */
 int			take_forks(t_philo *philo);
