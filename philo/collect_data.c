@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 20:57:33 by cabdli            #+#    #+#             */
-/*   Updated: 2024/01/29 16:43:54 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/02/04 21:01:43 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static int	init_mutex_data(t_data *data)
 	return (1);
 }
 
-//multiplier t_die/eat/sleep * 1000 ? Pk ?
 int	collect_data(char **str, t_data *data)
 {
 	data->t_die = ft_atoi(str[1]);

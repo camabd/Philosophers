@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 19:53:49 by cabdli            #+#    #+#             */
-/*   Updated: 2024/02/04 20:07:06 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/02/04 21:05:06 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,3 @@ int	think(t_philo *philo)
 		return (0);
 	return (1);
 }
-
-/*
-void	wait_after_thinking(int delay)
-{
-	long long	time_now;
-
-	time_now = get_time();
-	while (get_time() - time_now < delay)
-		usleep(50);
-}
-*/

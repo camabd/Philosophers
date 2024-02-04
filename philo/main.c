@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:47:34 by cabdli            #+#    #+#             */
-/*   Updated: 2024/02/04 20:26:45 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/02/04 21:58:51 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ Permet d'être sur que lorsque le philo prend une fourchette les 2 sont
 disponibles ? (temps d'attente  semble malgré  tout similaire dans les 2 cas)
 - routine.c fonction routine : wait_after_thinking(philo->sync); nécessaire ?
 
-pb éventuels :
-- structure philo->data->mutexes
+pb identifié ==> usleep dans my_usleep mis à 10 ms (soit 10k usec)
+- Pourquoi 8 ms de retard  ?
+- Pourquoi aucune différence avec et sans wait_after_thinking ?
+- modifier philo->data->mutexes
 */

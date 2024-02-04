@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elrichar <elrichar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 13:34:41 by elrichar          #+#    #+#             */
-/*   Updated: 2023/10/05 20:58:22 by elrichar         ###   ########.fr       */
+/*   Updated: 2024/02/04 22:00:02 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	*case_one(t_philo *philo)
 
 void	before_departure(t_philo *philo)
 {
-	philo->last_meal = 0;
 	philo->time = philo->time + (philo->nb_philo * 1000);
 	while (get_time() < philo->time)
 		usleep(1000);

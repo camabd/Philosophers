@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 13:28:02 by cabdli            #+#    #+#             */
-/*   Updated: 2024/02/04 20:45:38 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/02/04 22:06:48 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,31 +27,17 @@ if ((philo->nb_philos % 2 != 0) && (philo->pos % 2 == 0))
 */
 static void	handle_departure(t_philo *philo)
 {
-	philo->time = philo->time + (philo->nb_philos * 100);
+	philo->time = philo->time + (philo->nb_philos * 1000);
 	while (get_time() < philo->time)
 		usleep(1000);
 	philo->last_meal = get_time();
 	print_message(philo, "is thinking");
 	if ((philo->nb_philos % 2 == 0) && (philo->pos % 2 != 0))
 		usleep((philo->t_eat / 2) * 1000);
-	if ((philo->nb_philos % 2 != 0) && (philo->pos % 2 == 0))
+	else if ((philo->nb_philos % 2 != 0) && (philo->pos % 2 == 0))
 		usleep((philo->t_eat / 2) * 1000);
 }
 
-/* static void	*one_philo(t_philo *philo)
-{
-	pthread_mutex_lock(philo->l_fork);
-	printf("%lld %d has taken a fork\n", (get_time() - philo->time), \
-	philo->pos);
-	usleep((philo->t_die + 1) * 1000);
-	pthread_mutex_lock(philo->data->check_status);
-	pthread_mutex_lock(philo->data->write);
-	printf("%lld %d died\n", (get_time() - philo->time), philo->pos);
-	pthread_mutex_unlock(philo->l_fork);
-	pthread_mutex_unlock(philo->data->check_status);
-	pthread_mutex_unlock(philo->data->write);
-	return (NULL);
-}*/
 
 static void	*one_philo(t_philo *philo)
 {
@@ -95,3 +81,18 @@ void	*routine(void *arg)
 	}
 	return (NULL);
 }
+
+/* static void	*one_philo(t_philo *philo)
+{
+	pthread_mutex_lock(philo->l_fork);
+	printf("%lld %d has taken a fork\n", (get_time() - philo->time), \
+	philo->pos);
+	usleep((philo->t_die + 1) * 1000);
+	pthread_mutex_lock(philo->data->check_status);
+	pthread_mutex_lock(philo->data->write);
+	printf("%lld %d died\n", (get_time() - philo->time), philo->pos);
+	pthread_mutex_unlock(philo->l_fork);
+	pthread_mutex_unlock(philo->data->check_status);
+	pthread_mutex_unlock(philo->data->write);
+	return (NULL);
+}*/

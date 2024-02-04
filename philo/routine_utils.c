@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:38:34 by cabdli            #+#    #+#             */
-/*   Updated: 2024/02/04 20:43:36 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/02/04 21:32:06 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	my_usleep(t_philo *philo, long duration)
 	time_of_death = philo->last_meal + philo->t_die;
 	while (current < end_time)
 	{
-		usleep(100);
+		usleep(10000);
 		current = get_time();
 		if (current > time_of_death)
 		{
