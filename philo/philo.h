@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:48:54 by cabdli            #+#    #+#             */
-/*   Updated: 2024/02/04 19:53:36 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/02/05 01:20:38 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,9 @@ typedef struct s_data
 	long long		t_eat;
 	long long		t_sleep;
 	int				nb_meals;
-	pthread_mutex_t	*check_status;
-	t_bool			status;
-	pthread_mutex_t	*write;
 	int				i;
+	pthread_mutex_t	*check_status;
+	pthread_mutex_t	*write;
 }t_data;
 
 typedef struct s_philo
@@ -48,7 +47,9 @@ typedef struct s_philo
 	int				meals_eaten;
 	long long		last_meal;
 	long long		time;
-	t_data			*data;
+	pthread_mutex_t	*check_status;
+	t_bool			*status;
+	pthread_mutex_t	*write;
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*r_fork;
 	int				sync;
@@ -65,6 +66,7 @@ long long	get_time(void);
 
 /* Collect_data.c */
 int			collect_data(char **str, t_data *data);
+int			init_mutex_philo(t_philo **philo, t_data *data);
 
 /* Init_variables.c */
 int			init_var(pthread_mutex_t **forks, t_philo **philo, t_data *data);
@@ -89,7 +91,7 @@ int			eat(t_philo *philo);
 int			sleeping(t_philo *philo);
 int			think(t_philo *philo);
 
-/* Actions.c */
+/* Set_sync.c */
 void		set_sync(int nb, int i, t_philo **philos);
 
 #endif

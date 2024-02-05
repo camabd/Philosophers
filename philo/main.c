@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:47:34 by cabdli            #+#    #+#             */
-/*   Updated: 2024/02/04 21:58:51 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/02/05 01:39:30 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,6 @@ disponibles ? (temps d'attente  semble malgré  tout similaire dans les 2 cas)
 pb identifié ==> usleep dans my_usleep mis à 10 ms (soit 10k usec)
 - Pourquoi 8 ms de retard  ?
 - Pourquoi aucune différence avec et sans wait_after_thinking ?
-- modifier philo->data->mutexes
+- modifier philo->data->mutexes ==> toujours pareil, pb non resolu
+- Tester modif des variavles en micro sec ???
 */

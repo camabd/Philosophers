@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:38:34 by cabdli            #+#    #+#             */
-/*   Updated: 2024/02/04 21:32:06 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/02/05 01:27:40 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,15 @@ int	philo_dead(t_philo *philo)
 {
 	if ((get_time() - philo->last_meal) > philo->t_die)
 	{
-		pthread_mutex_lock(philo->data->check_status);
-		if (philo->data->status == alive)
+		pthread_mutex_lock(philo->check_status);
+		if (*(philo->status) == alive)
 		{
-			philo->data->status = dead;
-			pthread_mutex_lock(philo->data->write);
+			(*(philo->status)) = dead;
+			pthread_mutex_lock(philo->write);
 			printf("%lld %d died\n", (get_time() - philo->time), philo->pos);
-			pthread_mutex_unlock(philo->data->write);
+			pthread_mutex_unlock(philo->write);
 		}
-		pthread_mutex_unlock(philo->data->check_status);
+		pthread_mutex_unlock(philo->check_status);
 		return (1);
 	}
 	return (0);
@@ -57,13 +57,13 @@ int	print_message(t_philo *philo, char *str)
 {
 	if (philo_dead(philo))
 		return (0);
-	pthread_mutex_lock(philo->data->check_status);
-	if (philo->data->status == dead)
-		return (pthread_mutex_unlock(philo->data->check_status), 0);
-	pthread_mutex_lock(philo->data->write);
+	pthread_mutex_lock(philo->check_status);
+	if (*(philo->status) == dead)
+		return (pthread_mutex_unlock(philo->check_status), 0);
+	pthread_mutex_lock(philo->write);
 	printf("%lld %d %s\n", (get_time() - philo->time), philo->pos, str);
-	pthread_mutex_unlock(philo->data->write);
-	pthread_mutex_unlock(philo->data->check_status);
+	pthread_mutex_unlock(philo->write);
+	pthread_mutex_unlock(philo->check_status);
 	return (1);
 }
 

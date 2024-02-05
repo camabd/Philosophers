@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 13:28:02 by cabdli            #+#    #+#             */
-/*   Updated: 2024/02/04 22:06:48 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/02/05 01:36:11 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ if ((philo->nb_philos % 2 != 0) && (philo->pos % 2 == 0))
 */
 static void	handle_departure(t_philo *philo)
 {
-	philo->time = philo->time + (philo->nb_philos * 1000);
+	philo->time = philo->time + (philo->nb_philos * 100);
 	while (get_time() < philo->time)
 		usleep(1000);
 	philo->last_meal = get_time();
