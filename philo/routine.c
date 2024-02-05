@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 13:28:02 by cabdli            #+#    #+#             */
-/*   Updated: 2024/02/05 01:36:11 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/02/05 13:09:54 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,25 +27,25 @@ if ((philo->nb_philos % 2 != 0) && (philo->pos % 2 == 0))
 */
 static void	handle_departure(t_philo *philo)
 {
-	philo->time = philo->time + (philo->nb_philos * 100);
+	philo->time = philo->time + (philo->nb_philos * 1000);
 	while (get_time() < philo->time)
 		usleep(1000);
 	philo->last_meal = get_time();
 	print_message(philo, "is thinking");
 	if ((philo->nb_philos % 2 == 0) && (philo->pos % 2 != 0))
-		usleep((philo->t_eat / 2) * 1000);
+		usleep((philo->t_eat / 2));
 	else if ((philo->nb_philos % 2 != 0) && (philo->pos % 2 == 0))
-		usleep((philo->t_eat / 2) * 1000);
+		usleep((philo->t_eat / 2));
 }
 
 
 static void	*one_philo(t_philo *philo)
 {
 	pthread_mutex_lock(philo->l_fork);
-	printf("%lld %d has taken a fork\n", (get_time() - philo->time), \
+	printf("%lld %d has taken a fork\n", ((get_time() - philo->time) / 1000), \
 	philo->pos);
-	usleep((philo->t_die + 1) * 1000);
-	printf("%lld %d died\n", (get_time() - philo->time), philo->pos);
+	usleep((philo->t_die + 1000));
+	printf("%lld %d died\n", ((get_time() - philo->time) / 1000), philo->pos);
 	pthread_mutex_unlock(philo->l_fork);
 	return (NULL);
 }

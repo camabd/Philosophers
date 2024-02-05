@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:38:34 by cabdli            #+#    #+#             */
-/*   Updated: 2024/02/05 01:27:40 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/02/05 13:14:57 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ int	philo_dead(t_philo *philo)
 		{
 			(*(philo->status)) = dead;
 			pthread_mutex_lock(philo->write);
-			printf("%lld %d died\n", (get_time() - philo->time), philo->pos);
+			printf("%lld %d died\n", ((get_time() - philo->time) \
+			/ 1000), philo->pos);
 			pthread_mutex_unlock(philo->write);
 		}
 		pthread_mutex_unlock(philo->check_status);
@@ -61,7 +62,7 @@ int	print_message(t_philo *philo, char *str)
 	if (*(philo->status) == dead)
 		return (pthread_mutex_unlock(philo->check_status), 0);
 	pthread_mutex_lock(philo->write);
-	printf("%lld %d %s\n", (get_time() - philo->time), philo->pos, str);
+	printf("%lld %d %s\n", ((get_time() - philo->time) / 1000), philo->pos, str);
 	pthread_mutex_unlock(philo->write);
 	pthread_mutex_unlock(philo->check_status);
 	return (1);
@@ -78,7 +79,7 @@ int	my_usleep(t_philo *philo, long duration)
 	time_of_death = philo->last_meal + philo->t_die;
 	while (current < end_time)
 	{
-		usleep(10000);
+		usleep(330);
 		current = get_time();
 		if (current > time_of_death)
 		{

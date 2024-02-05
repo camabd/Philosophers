@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 20:57:33 by cabdli            #+#    #+#             */
-/*   Updated: 2024/02/05 01:18:06 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/02/05 12:57:36 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ int	init_mutex_philo(t_philo **philo, t_data *data)
 
 int	collect_data(char **str, t_data *data)
 {
-	data->t_die = ft_atoi(str[1]);
-	data->t_eat = ft_atoi(str[2]);
-	data->t_sleep = ft_atoi(str[3]);
+	data->t_die = ft_atoi(str[1]) * 1000;
+	data->t_eat = ft_atoi(str[2]) * 1000;
+	data->t_sleep = ft_atoi(str[3]) * 1000;
 	data->i = -1;
 	if (str[4])
 		data->nb_meals = ft_atoi(str[4]);
