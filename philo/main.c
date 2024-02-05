@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:47:34 by cabdli            #+#    #+#             */
-/*   Updated: 2024/02/05 13:05:12 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/02/05 15:49:28 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,6 @@ int	main(int ac, char **av)
 	return (1);
 }
 
-
-
-
 /*Questions :
 - peut-on join juste apres la creation d'un thread,
 avant de les avoirs tous crées ? donc le faire au fur et a mesure ?
@@ -47,18 +44,8 @@ avant de les avoirs tous crées ? donc le faire au fur et a mesure ?
 - si fonction join ne fonctionne pas, pk continuer quand meme le pgme ?
 ==> si elle ne fonctionne pas j'arrete le pgme
 
-- Tester avec differents temps de creation d'un philo, dans handle departure
-
 - take_forks.c : Pourquoi les forks prises en 1eres et lachees en premieres
 varient en fonction de a position du philo (philo pair ou impair) ?
 Permet d'être sur que lorsque le philo prend une fourchette les 2 sont
-disponibles ? (temps d'attente  semble malgré  tout similaire dans les 2 cas)
-
-- routine.c fonction routine : wait_after_thinking(philo->sync); nécessaire ?
-
-pb identifié ==> usleep dans my_usleep mis à 10 ms (soit 10k usec)
-- Pourquoi 8 ms de retard  ?
-- Pourquoi aucune différence avec et sans wait_after_thinking ?
-- modifier philo->data->mutexes ==> toujours pareil, pb non resolu
-- Tester modif des variavles en micro sec ???
+disponibles ? (temps d'attente  semble malgré tout similaire dans les 2 cas)
 */

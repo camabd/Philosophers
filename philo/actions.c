@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 19:53:49 by cabdli            #+#    #+#             */
-/*   Updated: 2024/02/04 21:05:06 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/02/05 15:48:08 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static int	philo_fully_fed(t_philo *philo)
 	}
 	return (0);
 }
-
 
 /*
 Remarque : 

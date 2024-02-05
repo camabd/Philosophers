@@ -6,24 +6,24 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 13:28:02 by cabdli            #+#    #+#             */
-/*   Updated: 2024/02/05 13:09:54 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/02/05 15:53:23 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-//100 ms = approximation de temps de création d'un thread
-//usleep(1000) = 1000 microsec = 1 ms
-/* Rqes :
+/* 
+1000 usec = 1 ms = approximation de temps de création d'un thread
+==> usleep(1000) = 1000 microsec = 1 ms
+Rqes :
 - En cas de nb de philos paire, j'envoi les paires en premier et je
 fais attendre les impaires:
 if ((philo->nb_philos % 2 == 0) && (philo->pos % 2 != 0))
-		usleep((philo->t_eat / 2) * 1000); 
+		usleep((philo->t_eat / 2)); 
 - En cas de nb de philos impaire, j'envoi les impaires en premier et je
 fais attendre les paires:
 if ((philo->nb_philos % 2 != 0) && (philo->pos % 2 == 0))
-		usleep((philo->t_eat / 2) * 1000);
-==> *1000 pour convertir en microsec
+		usleep((philo->t_eat / 2));
 */
 static void	handle_departure(t_philo *philo)
 {
@@ -37,7 +37,6 @@ static void	handle_departure(t_philo *philo)
 	else if ((philo->nb_philos % 2 != 0) && (philo->pos % 2 == 0))
 		usleep((philo->t_eat / 2));
 }
-
 
 static void	*one_philo(t_philo *philo)
 {

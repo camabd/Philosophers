@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:40:17 by cabdli            #+#    #+#             */
-/*   Updated: 2024/02/01 15:44:06 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/02/05 15:49:49 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,3 @@ void	set_sync(int nb, int i, t_philo **philos)
 		(*philos)[i].sync = 0;
 	set_sync_2(nb, i, philos);
 }
-
