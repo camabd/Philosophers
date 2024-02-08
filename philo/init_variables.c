@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:07:15 by cabdli            #+#    #+#             */
-/*   Updated: 2024/02/08 15:36:26 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/02/08 15:41:34 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ t_data *data)
 static int	init_philo(t_philo **philo, pthread_mutex_t **forks, \
 t_data *data)
 {
-	(*philo) = NULL; //malloc(data->nb_philos * sizeof(t_philo));
+	(*philo) = malloc(data->nb_philos * sizeof(t_philo));
 	if (!(*philo))
 		return (0);
 	init_philo_values(philo, forks, data);
